@@ -21,6 +21,7 @@ namespace Microwave.Test.Unit
         private ILight light;
 
         private ICookController cooker;
+        private int power;
 
         [SetUp]
         public void Setup()
@@ -38,7 +39,8 @@ namespace Microwave.Test.Unit
                 door,
                 display,
                 light,
-                cooker);
+                cooker,
+                power);
         }
 
         [Test]

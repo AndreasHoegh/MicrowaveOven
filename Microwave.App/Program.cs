@@ -12,7 +12,7 @@ namespace Microwave.App
             Button powerButton = new Button();
             Button timeButton = new Button();
             Console.WriteLine("Buzz");
-
+            //
             Door door = new Door();
 
             Output output = new Output();

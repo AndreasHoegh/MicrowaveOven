@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices.ComTypes;
 using Microwave.Classes.Interfaces;
 
 namespace Microwave.Classes.Boundary
@@ -9,6 +10,7 @@ namespace Microwave.Classes.Boundary
 
         public event EventHandler Expired;
         public event EventHandler TimerTick;
+        public event EventHandler TimeChanged;
 
         private System.Timers.Timer timer;
 
@@ -33,6 +35,11 @@ namespace Microwave.Classes.Boundary
             timer.Enabled = false;
         }
 
+        public void SetTime(int time)
+        {
+            TimeRemaining = time;
+        }
+
         private void Expire()
         {
             timer.Enabled = false;
@@ -51,6 +58,5 @@ namespace Microwave.Classes.Boundary
                 Expire();
             }
         }
-
     }
 }

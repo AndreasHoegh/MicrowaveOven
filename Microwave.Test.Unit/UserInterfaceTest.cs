@@ -21,7 +21,7 @@ namespace Microwave.Test.Unit
         private ILight light;
 
         private ICookController cooker;
-        private int power;
+        private int power=900;
 
         [SetUp]
         public void Setup()
@@ -92,10 +92,14 @@ namespace Microwave.Test.Unit
             display.Received(1).ShowPower(Arg.Is<int>(700));
         }
 
-        [Test]
-        public void Ready_15PowerButton_PowerIs50Again()
+        [TestCase(700, 15)]
+        [TestCase(900, 19)]
+        public void Ready_15PowerButton_PowerIs50Again(int power, int timesButton)
         {
-            for (int i = 1; i <= 15; i++)
+
+            uut.powerConfig = power;
+
+            for (int i = 1; i <= timesButton; i++)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             }

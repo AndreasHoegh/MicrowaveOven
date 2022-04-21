@@ -12,7 +12,7 @@ namespace Microwave.App
         {
 
             // Konfigration
-            int powerConfig = 800;
+            int powerConfig = 700;
            
 
 

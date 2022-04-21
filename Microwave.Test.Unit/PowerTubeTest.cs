@@ -17,8 +17,11 @@ namespace Microwave.Test.Unit
         public void Setup()
         {
             output = Substitute.For<IOutput>();
-            uut = new PowerTube(output,power);
+           uut = new PowerTube(output,700);
+
         }
+
+
 
         [TestCase(1)]
         [TestCase(50)]
@@ -27,6 +30,7 @@ namespace Microwave.Test.Unit
         [TestCase(700)]
         public void TurnOn_WasOffCorrectPower_CorrectOutput(int power)
         {
+            uut = new PowerTube(output, 700);
             uut.TurnOn(power);
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"{power}")));
         }

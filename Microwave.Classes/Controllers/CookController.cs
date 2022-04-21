@@ -75,7 +75,7 @@ namespace Microwave.Classes.Controllers
             if (isCooking)
             {
                 int remaining = myTimer.TimeRemaining + (60 * minutes);
-                if (remaining < 0)
+                if (remaining > 0)
                 {
                     myTimer.SetTime(remaining);
                 }

@@ -147,5 +147,28 @@ namespace Microwave.Test.Unit
 
             Assert.That(uut.TimeRemaining, Is.EqualTo(5-ticks*1));
         }
+
+        [TestCase(60,1)]
+        [TestCase(60,10)]
+        [TestCase(120,23)]
+        [TestCase(120,265)]
+        public void TestSetTime(int time, int increase)
+        {
+            uut.Start(time);
+            uut.SetTime(increase*60);
+            Assert.That(uut.TimeRemaining, Is.EqualTo(time+increase*60));
+        }
+
+        [TestCase(60, 1,1050)]
+        [TestCase(60, 10,2050)]
+        [TestCase(120, 23,3050)]
+        [TestCase(120, 265,4050)]
+        public void TestSetTimeWhileCooking(int time, int increase,int timeToWait)
+        {
+            uut.Start(time);
+            Thread.Sleep(timeToWait);
+            uut.SetTime(increase * 60);
+            Assert.That(uut.TimeRemaining, Is.EqualTo((time + increase * 60)-(timeToWait/1000)));
+        }
     }
 }

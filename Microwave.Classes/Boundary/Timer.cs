@@ -37,7 +37,7 @@ namespace Microwave.Classes.Boundary
 
         public void SetTime(int time)
         {
-            TimeRemaining = time;
+            TimeRemaining = time + TimeRemaining;
         }
 
         private void Expire()

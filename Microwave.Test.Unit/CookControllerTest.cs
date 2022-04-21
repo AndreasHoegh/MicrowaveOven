@@ -94,5 +94,13 @@ namespace Microwave.Test.Unit
             timer.Received(1).SetTime(time*60);
         }
 
+        [TestCase(0)]
+        public void Cooking_Change_Time_NoTime(int time)
+        {
+            //timer.TimeRemaining.Returns(10);
+            uut.StartCooking(400, 0);
+            uut.ChangeTime(time);
+            timer.Received(1).Stop();
+        }
     }
 }

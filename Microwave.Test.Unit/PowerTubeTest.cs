@@ -28,9 +28,11 @@ namespace Microwave.Test.Unit
         [TestCase(100)]
         [TestCase(699)]
         [TestCase(700)]
-        public void TurnOn_WasOffCorrectPower_CorrectOutput(int power)
+        [TestCase(800)]
+        [TestCase(900)]
+        public void TurnOn_WasOffCorrectPower_CorrectOutput(int power)                                    // Test Tilføjet
         {
-            uut = new PowerTube(output, 700);
+            uut = new PowerTube(output, power);
             uut.TurnOn(power);
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"{power}")));
         }

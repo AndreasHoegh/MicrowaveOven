@@ -14,7 +14,7 @@ namespace Microwave.App
             // Konfigration
             int powerConfig = 700;
            
-
+           
 
             Button startCancelButton = new Button();
             Button powerButton = new Button();

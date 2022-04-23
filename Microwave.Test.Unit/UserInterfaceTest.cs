@@ -82,19 +82,23 @@ namespace Microwave.Test.Unit
             display.Received(1).ShowPower(Arg.Is<int>(100));
         }
 
-        [Test]
-        public void Ready_14PowerButton_PowerIs700()
+        [TestCase(700,14)]
+        [TestCase(800, 16)]
+        [TestCase(900, 18)]
+        public void Ready_PowerButton_PowerIs(int Power,int PowerButton)                         // Test Tilføjet
         {
-            for (int i = 1; i <= 14; i++)
+            for (int i = 1; i <= PowerButton; i++)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             }
-            display.Received(1).ShowPower(Arg.Is<int>(700));
+            display.Received(1).ShowPower(Arg.Is<int>(Power));
         }
+
 
         [TestCase(700, 15)]
         [TestCase(900, 19)]
-        public void Ready_15PowerButton_PowerIs50Again(int power, int timesButton)
+        [TestCase(1000, 21)]
+        public void Ready_15PowerButton_PowerIs50Again(int power, int timesButton)                 // Test Tilføjet
         {
 
             uut.powerConfig = power;

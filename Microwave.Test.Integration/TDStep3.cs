@@ -26,6 +26,7 @@ namespace Microwave.Test.Integration
 
         private PowerTube powerTube;
         private Timer timer;
+        private Buzzer buzzer;
 
         private int power;
         private IOutput output;
@@ -46,9 +47,11 @@ namespace Microwave.Test.Integration
             timer = new Timer();
 
 
-            cooker = new CookController(timer, display, powerTube);
+            cooker = new CookController(timer, display, powerTube, buzzer);
 
-            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker,power);
+            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, buzzer, cooker,power);
+
+     
             cooker.UI = ui;
         }
 
@@ -156,11 +159,13 @@ namespace Microwave.Test.Integration
             var faketimer = Substitute.For<ITimer>();
 
             // Make a new cooker, with the 
-            cooker = new CookController(faketimer, display, powerTube);
+            cooker = new CookController(faketimer, display, powerTube, buzzer);
             // Then we must make a new UI
             ui = new UserInterface(
                 powerButton, timeButton, startCancelButton,
-                door, display, light, cooker,power);
+
+                door, display, light, buzzer, cooker,power);
+
             // And make the association
             cooker.UI = ui;
 

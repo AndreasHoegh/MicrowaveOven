@@ -10,7 +10,6 @@ namespace Microwave.Test.Unit
     public class CookControllerTest
     {
         private CookController uut;
-
         private IUserInterface ui;
         private ITimer timer;
         private IDisplay display;
@@ -83,5 +82,25 @@ namespace Microwave.Test.Unit
             powerTube.Received().TurnOff();
         }
 
+        [TestCase(1)]
+        [TestCase(3)]
+        [TestCase(5)]
+        [TestCase(10)]
+        public void Cooking_Change_Time(int time)
+        {
+            //timer.TimeRemaining.Returns(10);
+            uut.StartCooking(400,10);
+            uut.ChangeTime(time);
+            timer.Received(1).SetTime(time*60);
+        }
+
+        [TestCase(0)]
+        public void Cooking_Change_Time_NoTime(int time)
+        {
+            //timer.TimeRemaining.Returns(10);
+            uut.StartCooking(400, 0);
+            uut.ChangeTime(time);
+            timer.Received(1).Stop();
+        }
     }
 }

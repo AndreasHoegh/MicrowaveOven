@@ -12,8 +12,10 @@ namespace Microwave.Classes.Interfaces
         int TimeRemaining { get; }
         event EventHandler Expired;
         event EventHandler TimerTick;
+        event EventHandler TimeChanged;
 
         void Start(int time);
         void Stop();
+        void SetTime(int time);
     }
 }

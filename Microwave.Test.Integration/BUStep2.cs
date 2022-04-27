@@ -29,6 +29,8 @@ namespace Microwave.Test.Integration
 
         private IDoor door;
 
+        private int power;
+
         [SetUp]
         public void Setup()
         {
@@ -42,7 +44,7 @@ namespace Microwave.Test.Integration
 
             timer = new Timer();
             display = new Display(output);
-            powerTube = new PowerTube(output);
+            powerTube = new PowerTube(output,power);
 
             light = new Light(output);
 
@@ -52,7 +54,9 @@ namespace Microwave.Test.Integration
             ui = new UserInterface(
                 powerButton, timeButton, startCancelButton,
                 door, 
-                display, light, buzzer, cooker);
+
+                display, light, buzzer, cooker, power);
+
 
             cooker.UI = ui;
 
